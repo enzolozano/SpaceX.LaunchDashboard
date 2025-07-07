@@ -27,7 +27,7 @@ namespace SpaceX.LaunchDashboard.Test
                 Upcoming: false
             );
 
-            mockSpaceXService.Setup(s => s.GetById(fakeId))
+            mockSpaceXService.Setup(s => s.GetLaunchById(fakeId))
                 .ReturnsAsync(fakeDetailedLaunch);
 
             var launchService = new LaunchService(mockSpaceXService.Object);
@@ -49,6 +49,8 @@ namespace SpaceX.LaunchDashboard.Test
                 Name: "Test Mission",
                 DateUtc: DateTime.UtcNow,
                 Rocket: "Falcon 9",
+                Upcoming: true,
+                Success: null,
                 Patch: null
             );
 
@@ -76,6 +78,8 @@ namespace SpaceX.LaunchDashboard.Test
                 Name: "Test Mission",
                 DateUtc: DateTime.UtcNow,
                 Rocket: "Falcon 9",
+                Upcoming: true,
+                Success: null,
                 Patch: null
             );
 
