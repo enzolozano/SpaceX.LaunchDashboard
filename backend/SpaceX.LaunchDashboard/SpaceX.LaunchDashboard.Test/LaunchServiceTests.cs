@@ -12,7 +12,7 @@ namespace SpaceX.LaunchDashboard.Test
         {
             var mockSpaceXService = new Mock<SpaceXService>();
             mockSpaceXService.Setup(s => s.GetUpcomingLaunchesAsync())
-                .ReturnsAsync([new() { Id = "123", Name = "Test Mission" }]);
+                .ReturnsAsync([new() { FlightNumber = 123, MissionName = "Test Mission" }]);
 
             var launchService = new LaunchService(mockSpaceXService.Object);
 
@@ -23,11 +23,11 @@ namespace SpaceX.LaunchDashboard.Test
         }
 
         [Fact]
-        public async Task GetLatestLaunchesAsync_ShouldReturnLaunches()
+        public async Task GetPastLaunchesAsync_ShouldReturnLaunches()
         {
             var mockSpaceXService = new Mock<SpaceXService>();
             mockSpaceXService.Setup(s => s.GetPastLaunchesAsync())
-                .ReturnsAsync(new Launch() { Id = "123", Name = "Test Mission" });
+                .ReturnsAsync([new() { FlightNumber = 123, MissionName = "Test Mission" }]);
 
             var launchService = new LaunchService(mockSpaceXService.Object);
 
