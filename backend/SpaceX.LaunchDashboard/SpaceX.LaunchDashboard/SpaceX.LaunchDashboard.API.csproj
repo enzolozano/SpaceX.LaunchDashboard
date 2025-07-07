@@ -15,7 +15,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\SpaceX.LaunchDashboard.Application\SpaceX.LaunchDashboard.Application.csproj" />
+    <ProjectReference Include="..\SpaceX.LaunchDashboard.Infrastructure\SpaceX.LaunchDashboard.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
