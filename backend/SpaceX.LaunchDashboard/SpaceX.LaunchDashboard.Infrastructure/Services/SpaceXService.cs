@@ -8,7 +8,7 @@ namespace SpaceX.LaunchDashboard.Infrastructure.Services
     {
         private readonly HttpClient _httpClient;
 
-        private readonly string _upcomingLaunchesEndpoint = "/v4/launches/upcoming";
+        private readonly string _upcomingLaunchesEndpoint = "/v5/launches/upcoming";
 
         public SpaceXService(HttpClient httpClient)
         {
