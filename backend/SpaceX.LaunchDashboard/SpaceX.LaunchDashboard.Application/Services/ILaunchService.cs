@@ -3,7 +3,8 @@
 namespace SpaceX.LaunchDashboard.Application.Services
 {
     public interface ILaunchService
-    {
+    {        
+        Task<Launch> GetLatestLaunchAsync();
         Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync();
     }
 }

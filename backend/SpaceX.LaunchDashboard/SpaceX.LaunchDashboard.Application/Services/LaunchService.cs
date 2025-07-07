@@ -3,18 +3,12 @@ using SpaceX.LaunchDashboard.Domain.Interfaces;
 
 namespace SpaceX.LaunchDashboard.Application.Services
 {
-    public class LaunchService : ILaunchService
+    public class LaunchService(ISpaceXService spaceXService) : ILaunchService
     {
-        private readonly ISpaceXService _spaceXService;
+        private readonly ISpaceXService _spaceXService = spaceXService;
 
-        public LaunchService(ISpaceXService spaceXService)
-        {
-            _spaceXService = spaceXService;
-        }
+        public async Task<Launch> GetLatestLaunchAsync() => await _spaceXService.GetLatestLaunchAsync();        
 
-        public async Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync()
-        {
-            return await _spaceXService.GetUpcomingLaunchesAsync();
-        }
+        public async Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync() => await _spaceXService.GetUpcomingLaunchesAsync();        
     }
 }
