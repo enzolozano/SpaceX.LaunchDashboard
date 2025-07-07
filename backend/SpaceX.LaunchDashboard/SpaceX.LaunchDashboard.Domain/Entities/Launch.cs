@@ -1,16 +1,15 @@
-﻿using System.Text.Json.Serialization;
-
-namespace SpaceX.LaunchDashboard.Domain.Entities
+﻿namespace SpaceX.LaunchDashboard.Domain.Entities
 {
     public class Launch
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        [JsonPropertyName("date_utc")]
-        public DateTime DateUtc { get; set; }
+        public int FlightNumber { get; set; }
+        public string MissionName { get; set; }
+        public DateTime LaunchDateUtc { get; set; }
+        public Rocket Rocket { get; set; }
+        public LaunchSite LaunchSite { get; set; }
+        public Links Links { get; set; }
+        public string Details { get; set; }
         public bool Upcoming { get; set; }
-        public string Rocket { get; set; }
-        public string Launchpad { get; set; }
-        public IEnumerable<Crews> Crew { get; set; }
+        public DateTime LastDateUpdate { get; set; }
     }
 }
