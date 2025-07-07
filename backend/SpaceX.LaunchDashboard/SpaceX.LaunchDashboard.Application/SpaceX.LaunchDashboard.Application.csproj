@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SpaceX.LaunchDashboard.Domain\SpaceX.LaunchDashboard.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
