@@ -14,11 +14,18 @@ namespace SpaceX.LaunchDashboard.API.Controllers
             _launchService = launchService;
         }
 
-        [HttpGet]
+        [HttpGet("upcoming")]
         public async Task<IActionResult> GetUpcoming()
         {
             var launches = await _launchService.GetUpcomingLaunchesAsync(); ;
             return Ok(launches);
+        }
+
+        [HttpGet("latest")]
+        public async Task<IActionResult> GetLatest()
+        {
+            var launch = await _launchService.GetLatestLaunchAsync(); ;
+            return Ok(launch);
         }
     }
 }

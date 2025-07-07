@@ -1,5 +1,6 @@
 using Serilog;
 using SpaceX.LaunchDashboard.Application.Services;
+using SpaceX.LaunchDashboard.CrossCutting.Middlewares;
 using SpaceX.LaunchDashboard.Domain.Interfaces;
 using SpaceX.LaunchDashboard.Infrastructure.Services;
 
@@ -37,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
