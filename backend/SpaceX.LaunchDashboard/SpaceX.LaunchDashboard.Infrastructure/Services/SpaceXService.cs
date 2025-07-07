@@ -8,8 +8,24 @@ namespace SpaceX.LaunchDashboard.Infrastructure.Services
     {
         private readonly HttpClient _httpClient = httpClient;
 
-        private readonly string _latestLaunchesEndpoint = "/v3/launches/past";
-        private readonly string _upcomingLaunchesEndpoint = "/v3/launches/upcoming";
+        private readonly string _launchByIdEndpoint = "/v4/launches/{0}";
+        private readonly string _latestLaunchesEndpoint = "/v4/launches/past";
+        private readonly string _upcomingLaunchesEndpoint = "/v4/launches/upcoming";
+
+        public async Task<DetailedLaunch> GetById(string id)
+        {
+            var endpoint = string.Format(_launchByIdEndpoint, id);
+            var response = await _httpClient.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var launch = JsonSerializer.Deserialize<DetailedLaunch>(content, new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+            });
+
+            return launch;
+        }
 
         public async Task<IEnumerable<Launch>> GetPastLaunchesAsync()
         {

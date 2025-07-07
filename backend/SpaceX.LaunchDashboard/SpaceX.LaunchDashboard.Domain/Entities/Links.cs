@@ -1,9 +1,22 @@
 ﻿namespace SpaceX.LaunchDashboard.Domain.Entities
 {
-    public class Links
+    public record Links(
+        Patch Patch,
+        Reddit Reddit,
+        string? YoutubeId,
+        string? Article,
+        string? Wikipedia)
     {
-        public string MissionPatch { get; set; }
-        public string RedditCampaign { get; set; }
-        public string Wikipedia { get; set; }
-    }
+        public string YoutubeLink => $"https://youtube.com/watch?v={YoutubeId}";
+    };
+
+    public record Patch(
+        string? Small, 
+        string? Large);
+    
+    public record Reddit(
+        string? Campaign,
+        string? Launch,
+        string? Media,
+        string? Recovery);
 }

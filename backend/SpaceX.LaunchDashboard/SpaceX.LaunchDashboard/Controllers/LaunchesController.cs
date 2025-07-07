@@ -14,6 +14,13 @@ namespace SpaceX.LaunchDashboard.API.Controllers
             _launchService = launchService;
         }
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
+        {
+            var launch = await _launchService.GetById(id);
+            return Ok(launch);
+        }
+
         [HttpGet("upcoming")]
         public async Task<IActionResult> GetUpcoming()
         {
