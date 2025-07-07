@@ -4,7 +4,7 @@ namespace SpaceX.LaunchDashboard.Domain.Interfaces
 {
     public interface ISpaceXService
     {
-        Task<Launch> GetLatestLaunchAsync();
+        Task<IEnumerable<Launch>> GetPastLaunchesAsync();
         Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync();
     }
 }

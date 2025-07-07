@@ -7,7 +7,7 @@ namespace SpaceX.LaunchDashboard.Application.Services
     {
         private readonly ISpaceXService _spaceXService = spaceXService;
 
-        public async Task<Launch> GetLatestLaunchAsync() => await _spaceXService.GetLatestLaunchAsync();        
+        public async Task<IEnumerable<Launch>> GetPastLaunchesAsync() => await _spaceXService.GetPastLaunchesAsync();        
 
         public async Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync() => await _spaceXService.GetUpcomingLaunchesAsync();        
     }

@@ -8,21 +8,21 @@ namespace SpaceX.LaunchDashboard.Infrastructure.Services
     {
         private readonly HttpClient _httpClient = httpClient;
 
-        private readonly string _latestLaunchesEndpoint = "/v5/launches/latest";
-        private readonly string _upcomingLaunchesEndpoint = "/v5/launches/upcoming";
+        private readonly string _latestLaunchesEndpoint = "/v3/launches/past";
+        private readonly string _upcomingLaunchesEndpoint = "/v3/launches/upcoming";
 
-        public async Task<Launch> GetLatestLaunchAsync()
+        public async Task<IEnumerable<Launch>> GetPastLaunchesAsync()
         {
             var response = await _httpClient.GetAsync(_latestLaunchesEndpoint);
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();
-            var launch = JsonSerializer.Deserialize<Launch>(content, new JsonSerializerOptions
+            var launches = JsonSerializer.Deserialize<List<Launch>>(content, new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             });
 
-            return launch;
+            return launches;
         }
 
         public async Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync()
@@ -33,7 +33,7 @@ namespace SpaceX.LaunchDashboard.Infrastructure.Services
             var content = await response.Content.ReadAsStringAsync();
             var launches = JsonSerializer.Deserialize<List<Launch>>(content, new JsonSerializerOptions
             {
-                PropertyNameCaseInsensitive = true
+                PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
             });
 
             return launches;

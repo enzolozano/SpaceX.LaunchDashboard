@@ -21,11 +21,11 @@ namespace SpaceX.LaunchDashboard.API.Controllers
             return Ok(launches);
         }
 
-        [HttpGet("latest")]
-        public async Task<IActionResult> GetLatest()
+        [HttpGet("past")]
+        public async Task<IActionResult> GetPast()
         {
-            var launch = await _launchService.GetLatestLaunchAsync(); ;
-            return Ok(launch);
+            var launches = await _launchService.GetPastLaunchesAsync(); ;
+            return Ok(launches);
         }
     }
 }
