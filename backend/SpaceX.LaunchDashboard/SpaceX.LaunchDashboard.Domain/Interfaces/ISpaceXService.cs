@@ -4,7 +4,8 @@ namespace SpaceX.LaunchDashboard.Domain.Interfaces
 {
     public interface ISpaceXService
     {
-        Task<DetailedLaunch> GetById(string id);
+        Task<Launchpad> GetLaunchpadById(string id);
+        Task<DetailedLaunch> GetLaunchById(string id);
         Task<IEnumerable<Launch>> GetPastLaunchesAsync();
         Task<IEnumerable<Launch>> GetUpcomingLaunchesAsync();
     }

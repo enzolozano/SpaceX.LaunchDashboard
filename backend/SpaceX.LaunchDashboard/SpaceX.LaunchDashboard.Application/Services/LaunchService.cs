@@ -7,7 +7,7 @@ namespace SpaceX.LaunchDashboard.Application.Services
     {
         private readonly ISpaceXService _spaceXService = spaceXService;
 
-        public async Task<DetailedLaunch> GetById(string id) => await _spaceXService.GetById(id);
+        public async Task<DetailedLaunch> GetById(string id) => await _spaceXService.GetLaunchById(id);
 
         public async Task<IEnumerable<Launch>> GetPastLaunchesAsync() => await _spaceXService.GetPastLaunchesAsync();        
 

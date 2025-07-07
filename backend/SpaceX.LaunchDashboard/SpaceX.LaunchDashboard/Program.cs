@@ -18,6 +18,7 @@ builder.Host.UseSerilog((ctx, lc) => lc
 
 // Add services to the container.
 builder.Services.AddScoped<ILaunchService, LaunchService>();
+builder.Services.AddScoped<ILaunchpadService, LaunchpadService>();
 builder.Services.AddScoped<ISpaceXService, SpaceXService>();
 
 builder.Services.AddHttpClient<ISpaceXService, SpaceXService>(client =>

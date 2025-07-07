@@ -5,14 +5,9 @@ namespace SpaceX.LaunchDashboard.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LaunchesController : ControllerBase
+    public class LaunchesController(ILaunchService launchService) : ControllerBase
     {
-        private readonly ILaunchService _launchService;
-
-        public LaunchesController(ILaunchService launchService)
-        {
-            _launchService = launchService;
-        }
+        private readonly ILaunchService _launchService = launchService;
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(string id)
