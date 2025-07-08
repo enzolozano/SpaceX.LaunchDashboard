@@ -3,13 +3,15 @@
     public record DetailedLaunch(
         string Id,
         Links Links,
-        string? Rocket,
+        Rocket? Rocket,
         bool? Success,
         IReadOnlyList<Failure> Failures,
         string? Details,
         int? FlightNumber,
         string? Name,
         DateTime DateUtc,
-        bool? Upcoming
+        bool? Upcoming,
+        IEnumerable<Payload> Payloads,
+        Launchpad? Launchpad
     );
 }

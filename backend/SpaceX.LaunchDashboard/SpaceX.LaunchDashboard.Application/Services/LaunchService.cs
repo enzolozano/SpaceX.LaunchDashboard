@@ -1,4 +1,5 @@
-﻿using SpaceX.LaunchDashboard.Domain.Entities;
+﻿using SpaceX.LaunchDashboard.Application.Mappers;
+using SpaceX.LaunchDashboard.Domain.Entities;
 using SpaceX.LaunchDashboard.Domain.Interfaces;
 
 namespace SpaceX.LaunchDashboard.Application.Services
@@ -7,7 +8,11 @@ namespace SpaceX.LaunchDashboard.Application.Services
     {
         private readonly ISpaceXService _spaceXService = spaceXService;
 
-        public async Task<DetailedLaunch> GetById(string id) => await _spaceXService.GetLaunchById(id);
+        public async Task<DetailedLaunch> GetById(string id) 
+        { 
+            var dto = await _spaceXService.GetLaunchByIdAsync(id); 
+            return await dto.ToEntityAsync(_spaceXService);
+        }
 
         public async Task<IEnumerable<Launch>> GetPastLaunchesAsync() => await _spaceXService.GetPastLaunchesAsync();        
 
