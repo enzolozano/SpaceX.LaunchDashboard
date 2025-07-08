@@ -27,7 +27,7 @@ namespace SpaceX.LaunchDashboard.Test
                 Upcoming: false
             );
 
-            mockSpaceXService.Setup(s => s.GetLaunchById(fakeId))
+            mockSpaceXService.Setup(s => s.GetLaunchByIdAsync(fakeId))
                 .ReturnsAsync(fakeDetailedLaunch);
 
             var launchService = new LaunchService(mockSpaceXService.Object);

@@ -2,7 +2,7 @@
 {
     public record Failure(
         int? Time,
-        string? Altitude,
+        int? Altitude,
         string? Reason
     );
 }
