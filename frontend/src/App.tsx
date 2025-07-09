@@ -1,9 +1,18 @@
-import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HomePage } from './pages/Home'
+import { DetailedLaunchPage } from './pages/DetailedLaunch'
+import { UpcomingDashboardPage } from './pages/UpcomingDashboard'
+import { PastDashboardPage } from './pages/PastDashboard'
 
 export default function App() {
   return (
-    <div className="flex items-center justify-center h-screen">
-      <h1 className="text-4xl font-bold">🚀 SpaceX Launch Dashboard</h1>
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/launch/:id" element={<DetailedLaunchPage />} />
+        <Route path="/upcoming" element={<UpcomingDashboardPage />} />
+        <Route path="/past" element={<PastDashboardPage />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
