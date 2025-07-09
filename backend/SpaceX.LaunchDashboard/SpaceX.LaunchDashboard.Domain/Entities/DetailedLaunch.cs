@@ -7,6 +7,7 @@
         bool? Success,
         IReadOnlyList<Failure> Failures,
         string? Details,
+        IEnumerable<Crew> Crews,
         int? FlightNumber,
         string? Name,
         DateTime DateUtc,
