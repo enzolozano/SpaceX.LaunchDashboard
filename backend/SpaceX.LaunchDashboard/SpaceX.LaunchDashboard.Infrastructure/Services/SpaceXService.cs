@@ -9,6 +9,8 @@ public class SpaceXService(HttpClient httpClient) : ISpaceXService
 {
     private readonly HttpClient _httpClient = httpClient;
 
+    private readonly string _crewByIdEndpoint = "/v4/crew/{0}";
+
     private readonly string _launchByIdEndpoint = "/v4/launches/{0}";
     private readonly string _latestLaunchesEndpoint = "/v4/launches/past";
     private readonly string _upcomingLaunchesEndpoint = "/v4/launches/upcoming";
@@ -23,6 +25,23 @@ public class SpaceXService(HttpClient httpClient) : ISpaceXService
     {
         PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
     };
+
+    public async Task<IEnumerable<Crew>> GetCrewsByIdsAsync(List<string> ids)
+    {
+        var crews = ids.Select(async id =>
+        {
+            var endpoint = string.Format(_crewByIdEndpoint, id);
+            var response = await _httpClient.GetAsync(endpoint);
+            response.EnsureSuccessStatusCode();
+
+            var content = await response.Content.ReadAsStringAsync();
+            var crew = JsonSerializer.Deserialize<Crew>(content, _jsonOptions);
+
+            return crew;
+        });
+
+        return crews.Select(crew => crew.GetAwaiter().GetResult());
+    }
 
     public async Task<DetailedLaunchDto> GetLaunchByIdAsync(string id)
     {

@@ -9,6 +9,7 @@ namespace SpaceX.LaunchDashboard.Domain.DTOs
         bool? Success,
         IReadOnlyList<Failure> Failures,
         string? Details,
+        IReadOnlyList<string> Crew,
         int? FlightNumber,
         string? Name,
         DateTime DateUtc,
