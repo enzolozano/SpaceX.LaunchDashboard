@@ -4,7 +4,7 @@
         string? Id,
         Images Images,
         string? FullName,
-        string? Location,
+        string? Locality,
         string? Region,
         int? LaunchAttempts,
         int? LaunchSuccesses,
