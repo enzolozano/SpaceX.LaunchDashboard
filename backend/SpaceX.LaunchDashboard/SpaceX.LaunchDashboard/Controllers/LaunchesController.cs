@@ -5,13 +5,15 @@ namespace SpaceX.LaunchDashboard.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class LaunchesController : ControllerBase
+    public class LaunchesController(ILaunchService launchService) : ControllerBase
     {
-        private readonly ILaunchService _launchService;
+        private readonly ILaunchService _launchService = launchService;
 
-        public LaunchesController(ILaunchService launchService)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(string id)
         {
-            _launchService = launchService;
+            var launch = await _launchService.GetById(id);
+            return Ok(launch);
         }
 
         [HttpGet("upcoming")]
@@ -21,11 +23,11 @@ namespace SpaceX.LaunchDashboard.API.Controllers
             return Ok(launches);
         }
 
-        [HttpGet("latest")]
-        public async Task<IActionResult> GetLatest()
+        [HttpGet("past")]
+        public async Task<IActionResult> GetPast()
         {
-            var launch = await _launchService.GetLatestLaunchAsync(); ;
-            return Ok(launch);
+            var launches = await _launchService.GetPastLaunchesAsync(); ;
+            return Ok(launches);
         }
     }
 }
